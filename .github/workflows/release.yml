@@ -19,7 +19,7 @@ jobs:
         os: [ubuntu-latest, macos-latest]
     runs-on: ${{ matrix.os }}
     steps:
-      - uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v6
         with:
           persist-credentials: false
       - uses: ./.github/actions/verify
@@ -32,7 +32,7 @@ jobs:
       contents: write
       id-token: write
     steps:
-      - uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v6
         with:
           fetch-depth: 0
           persist-credentials: false
@@ -79,7 +79,7 @@ jobs:
               ;;
           esac
       - name: Attest the release installer
-        uses: actions/attest@f7c74d28b9d84cb8768d0b8ca14a4bac6ef463e6 # v4
+        uses: actions/attest@508db95dd578ae2727ebd6217d5ba78e4fbda05d # v4
         with:
           subject-path: install.sh
       - name: Upload the attested installer
@@ -111,7 +111,7 @@ jobs:
       contents: write
       id-token: write
     steps:
-      - uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v6
         with:
           persist-credentials: false
       - name: Install pinned Rust toolchain
@@ -119,7 +119,7 @@ jobs:
         run: |
           rustup toolchain install 1.88.0 --profile minimal
           rustup default 1.88.0
-      - uses: taiki-e/setup-cross-toolchain-action@3d9770ce98eb7dbcf378563182a5e8031165f75b # v1
+      - uses: taiki-e/setup-cross-toolchain-action@12b7ad4acfa95a1476779d6c06699b96ec1691f8 # v1
         if: endsWith(matrix.target, '-linux-musl')
         with:
           target: ${{ matrix.target }}
@@ -174,7 +174,7 @@ jobs:
           fi
           printf 'path=%s\n' "$checksum_path" >> "$GITHUB_OUTPUT"
       - name: Attest the release archive and checksum
-        uses: actions/attest@f7c74d28b9d84cb8768d0b8ca14a4bac6ef463e6 # v4
+        uses: actions/attest@508db95dd578ae2727ebd6217d5ba78e4fbda05d # v4
         with:
           subject-path: |
             ${{ steps.build.outputs.tar }}
